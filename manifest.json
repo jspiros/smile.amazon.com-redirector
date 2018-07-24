@@ -1,0 +1,10 @@
+{
+	"manifest_version": 2,
+	"name": "smile.amazon.com Redirector",
+	"version": "1.0",
+	"description": "Automatically redirect to smile.amazon.com when visiting amazon.com URLs. No other Amazon domains or sites are affected.",
+	"content_scripts": [{
+		"matches": ["*://www.amazon.com/*"],
+		"js": ["smile.amazon.com-redirector.js"]
+	}]
+}
