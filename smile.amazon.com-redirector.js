@@ -1,3 +1,15 @@
-if (window.location.href.match(/https?:\/\/www\.amazon\.com\/?/)) {
-	window.location.href = window.location.href.replace(/www\.amazon\.com/, 'smile.amazon.com');
+function redirector(details) {
+	var smileUrl = details.url.replace(/(www\.)?amazon\.com/, 'smile.amazon.com');
+	return {
+		redirectUrl: smileUrl
+	};
 }
+
+browser.webRequest.onBeforeRequest.addListener(
+	redirector,
+	{
+		urls: ['*://www.amazon.com/*', '*://amazon.com/*'],
+		types: ['main_frame', 'sub_frame']
+	},
+	['blocking']
+);
